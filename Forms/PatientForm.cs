@@ -1,5 +1,6 @@
-﻿using ProyectoFinal_Programacionlll.Models;
+﻿using ProyectoFinal_Programacionlll.DTOs;
 using ProyectoFinal_Programacionlll.Services;
+using ProyectoFinal_Programacionlll.Helpers;
 
 namespace ProyectoFinal_Programacionlll.UserControls
 {
@@ -64,6 +65,21 @@ namespace ProyectoFinal_Programacionlll.UserControls
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void txtFullName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validators.AllowOnlyLetters(sender, e);
+        }
+
+        private void txtDNI_TextChanged(object sender, KeyPressEventArgs e)
+        {
+            Validators.NumbersOnly(sender, e);
+        }
+
+        private void txtPhone_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validators.NumbersOnly(sender, e);
         }
     }
 }

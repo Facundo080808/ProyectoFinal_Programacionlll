@@ -1,4 +1,5 @@
-﻿using ProyectoFinal_Programacionlll.Models;
+﻿using ProyectoFinal_Programacionlll.DTOs;
+using ProyectoFinal_Programacionlll.Helpers;
 using ProyectoFinal_Programacionlll.Services;
 using ProyectoFinal_Programacionlll.UserControls;
 using System;
@@ -19,14 +20,15 @@ namespace ProyectoFinal_Programacionlll.Forms
         public AddAppointmentForm()
         {
             InitializeComponent();
+            LoadComboData();
         }
 
         private async void btnGuardar_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtMotivo.Text) ||
                 string.IsNullOrWhiteSpace(txtPrecio.Text) ||
-                string.IsNullOrWhiteSpace(txtPacienteId.Text) ||
-                string.IsNullOrWhiteSpace(txtDoctorId.Text))
+                string.IsNullOrWhiteSpace(cmbPaciente.Text) ||
+                string.IsNullOrWhiteSpace(cmbDoctor.Text))
             {
                 MessageBox.Show("Por favor, completá todos los campos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -43,9 +45,10 @@ namespace ProyectoFinal_Programacionlll.Forms
                 Date = dtpFecha.Value,
                 Reason = txtMotivo.Text,
                 Price = price,
-                PatientId = int.Parse(txtPacienteId.Text),
-                DoctorId = int.Parse(txtDoctorId.Text),
+                PatientId = (int)cmbPaciente.SelectedValue,
+                DoctorId = (int)cmbDoctor.SelectedValue,
                 CreatedByUserId = UserSession.CurrentUser.Id
+                //CreatedByUserId = 1 // Temporal hasta implementar sesión de usuario
             };
 
             bool success = await AppointmentService.CreateAppointmentAsync(newAppointment);
@@ -68,9 +71,41 @@ namespace ProyectoFinal_Programacionlll.Forms
             Close();
         }
 
-        
+        private async void LoadComboData()
+        {
+            // Cargar pacientes
+            var patients = await PatientService.GetAllAsync();
 
-       
+            var patientDisplayList = patients?.Select(p => new
+            {
+                Id = p.Id,
+                DisplayText = $"{p.FullName} - {p.DNI}"
+            }).ToList();
 
+            cmbPaciente.DataSource = patientDisplayList;
+            cmbPaciente.DisplayMember = "DisplayText"; // se ve Nombre - DNI
+            cmbPaciente.ValueMember = "Id"; // sigue usando Id como valor real
+
+            // Cargar doctores normalmente (puedes hacer lo mismo si querés mostrar DNI)
+            var doctors = await DoctorService.GetDoctorsAsync();
+            var doctorDisplayList = doctors?.Select(p => new
+            {
+                Id = p.Id,
+                DisplayText = $"{p.FullName} - {p.DNI}"
+            }).ToList();
+            cmbDoctor.DataSource = doctorDisplayList;
+            cmbDoctor.DisplayMember = "DisplayText"; // o "FullName - DNI"
+            cmbDoctor.ValueMember = "Id";
+        }
+
+        private void txtPrecio_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validators.NumbersOnly(sender, e);
+        }
+
+        private void cmbPaciente_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

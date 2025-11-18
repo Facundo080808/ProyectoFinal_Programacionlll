@@ -1,4 +1,5 @@
-﻿using ProyectoFinal_Programacionlll.Models;
+﻿using ProyectoFinal_Programacionlll.DTOs;
+using ProyectoFinal_Programacionlll.Helpers;
 using ProyectoFinal_Programacionlll.Services;
 using System;
 using System.Windows.Forms;
@@ -59,6 +60,21 @@ namespace ProyectoFinal_Programacionlll.Forms
         {
             DialogResult = DialogResult.Cancel;
             Close();
+        }
+
+        private void txtFullName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validators.AllowOnlyLetters(sender, e);
+        }
+
+        private void txtSpecialty_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validators.AllowOnlyLetters(sender, e);
+        }
+
+        private void txtDNI_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validators.NumbersOnly(sender, e);
         }
     }
 }

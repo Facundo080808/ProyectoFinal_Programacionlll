@@ -1,5 +1,6 @@
 ﻿using ProyectoFinal_Programacionlll.Controllers;
-using ProyectoFinal_Programacionlll.Models;
+using ProyectoFinal_Programacionlll.DTOs;
+using ProyectoFinal_Programacionlll.Helpers;
 using ProyectoFinal_Programacionlll.Services;
 using ProyectoFinal_Programacionlll.Utils;
 using System;
@@ -40,6 +41,13 @@ namespace ProyectoFinal_Programacionlll.Forms
             string email = txtEmail.Text;
             string password = txtPassword.Text;
 
+            if (!Validators.IsValid(txtEmail.Text))
+            {
+                MessageBox.Show("Formato de correo invalido.", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             btnLogin.Enabled = false;
             btnLogin.Text = "Verificando...";
 
@@ -50,7 +58,10 @@ namespace ProyectoFinal_Programacionlll.Forms
 
             if (!success || user == null)
             {
-                MessageBox.Show($"Login falló.\n{message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("El email o contraseña incorrectos.",
+                        "Usuario no encontrado",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
                 return;
             }
 

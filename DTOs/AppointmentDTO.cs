@@ -1,4 +1,4 @@
-﻿namespace ProyectoFinal_Programacionlll.Models
+﻿namespace ProyectoFinal_Programacionlll.DTOs
 {
     public class AppointmentResponseDto
     {

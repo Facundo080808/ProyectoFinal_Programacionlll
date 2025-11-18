@@ -32,5 +32,6 @@ namespace ProyectoFinal_Programacionlll.Helpers
             // Deseleccionar cualquier celda inicial para que no aparezca resaltada
             dgv.CurrentCell = null;
         }
+        
     }
 }

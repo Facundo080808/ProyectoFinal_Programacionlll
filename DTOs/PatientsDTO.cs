@@ -4,13 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProyectoFinal_Programacionlll.Models
-{
-    internal class PatientsDTO
-    {
-    }
-}
-namespace ProyectoFinal_Programacionlll.Models
+
+namespace ProyectoFinal_Programacionlll.DTOs
 {
     public class PatientCreateDto
     {

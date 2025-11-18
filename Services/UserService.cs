@@ -1,77 +1,166 @@
 ﻿using Newtonsoft.Json;
-using ProyectoFinal_Programacionlll.Models;
-using System.Net.Http;
-using System.Net.Http.Json;
+using ProyectoFinal_Programacionlll.DTOs;
+using ProyectoFinal_Programacionlll.Helpers;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace ProyectoFinal_Programacionlll.Services
 {
     public static class UserService
     {
-        private static readonly HttpClient client = new HttpClient
-        {
-            BaseAddress = new Uri("http://localhost:5101/")
-        };
+        private static readonly string filePath =
+            Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "data", "users.json");
 
-        public static async Task<(bool success, LoginResponse? user, string message)> LoginAsync(string email, string password)
+        // Asegura que exista el archivo
+        private static void EnsureFile()
+        {
+            string dir = Path.GetDirectoryName(filePath);
+            if (!Directory.Exists(dir))
+                Directory.CreateDirectory(dir);
+
+            if (!File.Exists(filePath))
+                File.WriteAllText(filePath, "[]");
+        }
+
+        // Leer
+        private static List<UserInternalModel> LoadFile()
+        {
+            EnsureFile();
+            string json = File.ReadAllText(filePath);
+            return JsonConvert.DeserializeObject<List<UserInternalModel>>(json) ?? new();
+        }
+
+        // Guardar
+        private static void SaveFile(List<UserInternalModel> users)
+        {
+            EnsureFile();
+            File.WriteAllText(filePath, JsonConvert.SerializeObject(users, Formatting.Indented));
+        }
+
+        // Modelo interno (incluye Password)
+        private class UserInternalModel
+        {
+            public int Id { get; set; }
+            public string FullName { get; set; }
+            public string Email { get; set; }
+            public string Password { get; set; }   // Solo interno
+            public string Role { get; set; }
+        }
+
+        // ---------------------------------------------------------
+        // LOGIN
+        // ---------------------------------------------------------
+        public static async Task<(bool success, LoginResponse? user, string message)>
+            LoginAsync(string email, string password)
         {
             try
             {
-                email = email.Trim();
-                password = password.Trim();
+                var users = LoadFile();
+                var u = users.FirstOrDefault(x =>
+                    x.Email.Equals(email.Trim(), StringComparison.OrdinalIgnoreCase) &&
+                    x.Password == password.Trim()
+                );
 
-                var data = new LoginRequest { Email = email, Password = password };
-                string json = JsonConvert.SerializeObject(data);
-                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                if (u == null)
+                    return (false, null, "Email o contraseña incorrectos");
 
-                HttpResponseMessage response = await client.PostAsync("api/User/login", content);
-
-                string resultBody = await response.Content.ReadAsStringAsync();
-
-                if (!response.IsSuccessStatusCode)
+                var loginResponse = new LoginResponse
                 {
-                    // devolvemos status + body para diagnostico
-                    return (false, null, $"Status: {(int)response.StatusCode} {response.ReasonPhrase}\nBody: {resultBody}");
-                }
+                    Id = u.Id,
+                    FullName = u.FullName,
+                    Email = u.Email,
+                    Role = u.Role
+                };
 
-                var user = JsonConvert.DeserializeObject<LoginResponse>(resultBody);
-                return (true, user, "OK");
+                return (true, loginResponse, "OK");
             }
             catch (Exception ex)
             {
-                return (false, null, $"Exception: {ex.Message}\n{ex.StackTrace}");
+                return (false, null, ex.Message);
             }
         }
 
-        ///////////////////
-        ///
+        // ---------------------------------------------------------
+        // GET ALL
+        // ---------------------------------------------------------
         public static async Task<List<UserResponseDto>?> GetAllAsync()
         {
-            var response = await client.GetAsync("api/User");
-            if (!response.IsSuccessStatusCode)
-                return null;
+            var users = LoadFile();
+            var appointments = AppointmentListed.Load();  // 🔥 cargar fichas
 
-            return await response.Content.ReadFromJsonAsync<List<UserResponseDto>>();
+            return users.Select(u => new UserResponseDto
+            {
+                Id = u.Id,
+                FullName = u.FullName,
+                Email = u.Email,
+                Role = u.Role,
+                CreatedAppointmentsCount = appointments.Count(a => a.CreatedByUserId == u.Id)
+            }).ToList();
         }
 
+        // ---------------------------------------------------------
+        // CREATE
+        // ---------------------------------------------------------
         public static async Task<bool> CreateAsync(UserCreateDto newUser)
         {
-            var response = await client.PostAsJsonAsync("api/User", newUser);
-            return response.IsSuccessStatusCode;
+            var users = LoadFile();
+
+            if (users.Any(u => u.Email.Equals(newUser.Email, StringComparison.OrdinalIgnoreCase)))
+                return false; // email duplicado
+
+            int newId = (users.Count == 0) ? 1 : users.Max(u => u.Id) + 1;
+
+            var model = new UserInternalModel
+            {
+                Id = newId,
+                FullName = newUser.FullName,
+                Email = newUser.Email,
+                Password = newUser.Password, // texto plano (puedo encriptarlo si querés)
+                Role = newUser.Role
+            };
+
+            users.Add(model);
+            SaveFile(users);
+            return true;
         }
 
+        // ---------------------------------------------------------
+        // UPDATE
+        // ---------------------------------------------------------
         public static async Task<bool> UpdateAsync(int id, UserUpdateDto updated)
         {
-            var response = await client.PutAsJsonAsync($"api/User/{id}", updated);
-            return response.IsSuccessStatusCode;
+            var users = LoadFile();
+            var u = users.FirstOrDefault(x => x.Id == id);
+
+            if (u == null)
+                return false;
+
+            if (!string.IsNullOrWhiteSpace(updated.FullName))
+                u.FullName = updated.FullName;
+
+            if (!string.IsNullOrWhiteSpace(updated.Email))
+                u.Email = updated.Email;
+
+            if (!string.IsNullOrWhiteSpace(updated.Role))
+                u.Role = updated.Role;
+
+            SaveFile(users);
+            return true;
         }
 
+        // ---------------------------------------------------------
+        // DELETE
+        // ---------------------------------------------------------
         public static async Task<bool> DeleteAsync(int id)
         {
-            var response = await client.DeleteAsync($"api/User/{id}");
-            return response.IsSuccessStatusCode;
-        }
+            var users = LoadFile();
+            var u = users.FirstOrDefault(x => x.Id == id);
 
+            if (u == null)
+                return false;
+
+            users.Remove(u);
+            SaveFile(users);
+            return true;
+        }
     }
 }

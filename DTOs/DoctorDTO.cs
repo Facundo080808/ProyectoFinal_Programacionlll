@@ -1,4 +1,4 @@
-﻿namespace ProyectoFinal_Programacionlll.Models
+﻿namespace ProyectoFinal_Programacionlll.DTOs
 {
     // DTO para mostrar datos del doctor (GET)
     public class DoctorResponseDto

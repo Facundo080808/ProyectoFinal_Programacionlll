@@ -1,4 +1,5 @@
-﻿using ProyectoFinal_Programacionlll.Models;
+﻿using ProyectoFinal_Programacionlll.DTOs;
+using ProyectoFinal_Programacionlll.Helpers;
 using ProyectoFinal_Programacionlll.Services;
 
 namespace ProyectoFinal_Programacionlll.UserControls
@@ -35,6 +36,12 @@ namespace ProyectoFinal_Programacionlll.UserControls
                 MessageBox.Show("Nombre y correo son obligatorios");
                 return;
             }
+            if (!Validators.IsValid(txtEmail.Text))
+            {
+                MessageBox.Show("Formato de correo invalido.", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             if (existing == null)
             {
@@ -65,6 +72,16 @@ namespace ProyectoFinal_Programacionlll.UserControls
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void txtFullName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validators.AllowOnlyLetters(sender, e);
+        }
+
+        private void txtRol_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Validators.AllowOnlyLetters(sender, e);
         }
     }
 }

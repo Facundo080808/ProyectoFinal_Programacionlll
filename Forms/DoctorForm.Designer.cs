@@ -15,148 +15,147 @@
 
         private void InitializeComponent()
         {
-            this.lblTitulo = new System.Windows.Forms.Label();
-            this.lblFullName = new System.Windows.Forms.Label();
-            this.txtFullName = new System.Windows.Forms.TextBox();
-            this.lblSpecialty = new System.Windows.Forms.Label();
-            this.txtSpecialty = new System.Windows.Forms.TextBox();
-            this.lblDNI = new System.Windows.Forms.Label();
-            this.txtDNI = new System.Windows.Forms.TextBox();
-            this.btnGuardar = new System.Windows.Forms.Button();
-            this.btnCancelar = new System.Windows.Forms.Button();
-
-            this.SuspendLayout();
-            // 
-            // AddDoctorForm (form settings)
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(245, 246, 250);
-            this.ClientSize = new System.Drawing.Size(420, 360);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.Text = "Agregar / Editar Doctor";
+            lblTitulo = new Label();
+            lblFullName = new Label();
+            txtFullName = new TextBox();
+            lblSpecialty = new Label();
+            txtSpecialty = new TextBox();
+            lblDNI = new Label();
+            txtDNI = new TextBox();
+            btnGuardar = new Button();
+            btnCancelar = new Button();
+            SuspendLayout();
             // 
             // lblTitulo
             // 
-            this.lblTitulo.AutoSize = true;
-            this.lblTitulo.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
-            this.lblTitulo.ForeColor = System.Drawing.Color.FromArgb(30, 30, 30);
-            this.lblTitulo.Location = new System.Drawing.Point(90, 18);
-            this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(240, 32);
-            this.lblTitulo.TabIndex = 0;
-            this.lblTitulo.Text = "Nuevo / Editar Doctor";
+            lblTitulo.AutoSize = true;
+            lblTitulo.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            lblTitulo.ForeColor = Color.FromArgb(30, 30, 30);
+            lblTitulo.Location = new Point(90, 18);
+            lblTitulo.Name = "lblTitulo";
+            lblTitulo.Size = new Size(208, 25);
+            lblTitulo.TabIndex = 0;
+            lblTitulo.Text = "Nuevo / Editar Doctor";
             // 
             // lblFullName
             // 
-            this.lblFullName.AutoSize = true;
-            this.lblFullName.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.lblFullName.Location = new System.Drawing.Point(30, 80);
-            this.lblFullName.Name = "lblFullName";
-            this.lblFullName.Size = new System.Drawing.Size(66, 23);
-            this.lblFullName.TabIndex = 1;
-            this.lblFullName.Text = "Nombre";
+            lblFullName.AutoSize = true;
+            lblFullName.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblFullName.Location = new Point(30, 80);
+            lblFullName.Name = "lblFullName";
+            lblFullName.Size = new Size(65, 19);
+            lblFullName.TabIndex = 1;
+            lblFullName.Text = "Nombre";
             // 
             // txtFullName
             // 
-            this.txtFullName.Location = new System.Drawing.Point(140, 77);
-            this.txtFullName.Name = "txtFullName";
-            this.txtFullName.Size = new System.Drawing.Size(230, 30);
-            this.txtFullName.TabIndex = 2;
-            this.txtFullName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtFullName.BackColor = System.Drawing.Color.White;
-            this.txtFullName.ForeColor = System.Drawing.Color.Black;
+            txtFullName.BackColor = Color.White;
+            txtFullName.BorderStyle = BorderStyle.FixedSingle;
+            txtFullName.ForeColor = Color.Black;
+            txtFullName.Location = new Point(140, 77);
+            txtFullName.Name = "txtFullName";
+            txtFullName.Size = new Size(230, 25);
+            txtFullName.TabIndex = 2;
+            txtFullName.KeyPress += txtFullName_KeyPress;
             // 
             // lblSpecialty
             // 
-            this.lblSpecialty.AutoSize = true;
-            this.lblSpecialty.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.lblSpecialty.Location = new System.Drawing.Point(30, 130);
-            this.lblSpecialty.Name = "lblSpecialty";
-            this.lblSpecialty.Size = new System.Drawing.Size(90, 23);
-            this.lblSpecialty.TabIndex = 3;
-            this.lblSpecialty.Text = "Especialidad";
+            lblSpecialty.AutoSize = true;
+            lblSpecialty.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblSpecialty.Location = new Point(30, 130);
+            lblSpecialty.Name = "lblSpecialty";
+            lblSpecialty.Size = new Size(92, 19);
+            lblSpecialty.TabIndex = 3;
+            lblSpecialty.Text = "Especialidad";
             // 
             // txtSpecialty
             // 
-            this.txtSpecialty.Location = new System.Drawing.Point(140, 127);
-            this.txtSpecialty.Name = "txtSpecialty";
-            this.txtSpecialty.Size = new System.Drawing.Size(230, 30);
-            this.txtSpecialty.TabIndex = 4;
-            this.txtSpecialty.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtSpecialty.BackColor = System.Drawing.Color.White;
-            this.txtSpecialty.ForeColor = System.Drawing.Color.Black;
+            txtSpecialty.BackColor = Color.White;
+            txtSpecialty.BorderStyle = BorderStyle.FixedSingle;
+            txtSpecialty.ForeColor = Color.Black;
+            txtSpecialty.Location = new Point(140, 127);
+            txtSpecialty.Name = "txtSpecialty";
+            txtSpecialty.Size = new Size(230, 25);
+            txtSpecialty.TabIndex = 4;
+            txtSpecialty.KeyPress += txtSpecialty_KeyPress;
             // 
             // lblDNI
             // 
-            this.lblDNI.AutoSize = true;
-            this.lblDNI.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.lblDNI.Location = new System.Drawing.Point(30, 180);
-            this.lblDNI.Name = "lblDNI";
-            this.lblDNI.Size = new System.Drawing.Size(41, 23);
-            this.lblDNI.TabIndex = 5;
-            this.lblDNI.Text = "DNI";
+            lblDNI.AutoSize = true;
+            lblDNI.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblDNI.Location = new Point(30, 180);
+            lblDNI.Name = "lblDNI";
+            lblDNI.Size = new Size(34, 19);
+            lblDNI.TabIndex = 5;
+            lblDNI.Text = "DNI";
             // 
             // txtDNI
             // 
-            this.txtDNI.Location = new System.Drawing.Point(140, 177);
-            this.txtDNI.Name = "txtDNI";
-            this.txtDNI.Size = new System.Drawing.Size(230, 30);
-            this.txtDNI.TabIndex = 6;
-            this.txtDNI.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtDNI.BackColor = System.Drawing.Color.White;
-            this.txtDNI.ForeColor = System.Drawing.Color.Black;
+            txtDNI.BackColor = Color.White;
+            txtDNI.BorderStyle = BorderStyle.FixedSingle;
+            txtDNI.ForeColor = Color.Black;
+            txtDNI.Location = new Point(140, 177);
+            txtDNI.Name = "txtDNI";
+            txtDNI.Size = new Size(230, 25);
+            txtDNI.TabIndex = 6;
+            txtDNI.KeyPress += txtDNI_KeyPress;
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Text = "💾 Guardar";
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(120, 40);
-            this.btnGuardar.Location = new System.Drawing.Point(70, 250);
-            this.btnGuardar.BackColor = System.Drawing.Color.FromArgb(46, 134, 222);
-            this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGuardar.FlatAppearance.BorderSize = 0;
-            this.btnGuardar.ForeColor = System.Drawing.Color.White;
-            this.btnGuardar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnGuardar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnGuardar.TabIndex = 7;
-            this.btnGuardar.UseVisualStyleBackColor = false;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            btnGuardar.BackColor = Color.FromArgb(46, 134, 222);
+            btnGuardar.Cursor = Cursors.Hand;
+            btnGuardar.FlatAppearance.BorderSize = 0;
+            btnGuardar.FlatStyle = FlatStyle.Flat;
+            btnGuardar.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnGuardar.ForeColor = Color.White;
+            btnGuardar.Location = new Point(70, 250);
+            btnGuardar.Name = "btnGuardar";
+            btnGuardar.Size = new Size(120, 40);
+            btnGuardar.TabIndex = 7;
+            btnGuardar.Text = "💾 Guardar";
+            btnGuardar.UseVisualStyleBackColor = false;
+            btnGuardar.Click += btnGuardar_Click;
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Text = "✖ Cancelar";
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(120, 40);
-            this.btnCancelar.Location = new System.Drawing.Point(230, 250);
-            this.btnCancelar.BackColor = System.Drawing.Color.FromArgb(99, 110, 114);
-            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancelar.FlatAppearance.BorderSize = 0;
-            this.btnCancelar.ForeColor = System.Drawing.Color.White;
-            this.btnCancelar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCancelar.TabIndex = 8;
-            this.btnCancelar.UseVisualStyleBackColor = false;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            btnCancelar.BackColor = Color.FromArgb(99, 110, 114);
+            btnCancelar.Cursor = Cursors.Hand;
+            btnCancelar.FlatAppearance.BorderSize = 0;
+            btnCancelar.FlatStyle = FlatStyle.Flat;
+            btnCancelar.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnCancelar.ForeColor = Color.White;
+            btnCancelar.Location = new Point(230, 250);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new Size(120, 40);
+            btnCancelar.TabIndex = 8;
+            btnCancelar.Text = "✖ Cancelar";
+            btnCancelar.UseVisualStyleBackColor = false;
+            btnCancelar.Click += btnCancelar_Click;
             // 
-            // Controls
+            // AddDoctorForm
             // 
-            this.Controls.Add(this.lblTitulo);
-            this.Controls.Add(this.lblFullName);
-            this.Controls.Add(this.txtFullName);
-            this.Controls.Add(this.lblSpecialty);
-            this.Controls.Add(this.txtSpecialty);
-            this.Controls.Add(this.lblDNI);
-            this.Controls.Add(this.txtDNI);
-            this.Controls.Add(this.btnGuardar);
-            this.Controls.Add(this.btnCancelar);
-
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(7F, 17F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(245, 246, 250);
+            ClientSize = new Size(420, 360);
+            Controls.Add(lblTitulo);
+            Controls.Add(lblFullName);
+            Controls.Add(txtFullName);
+            Controls.Add(lblSpecialty);
+            Controls.Add(txtSpecialty);
+            Controls.Add(lblDNI);
+            Controls.Add(txtDNI);
+            Controls.Add(btnGuardar);
+            Controls.Add(btnCancelar);
+            Font = new Font("Segoe UI", 10F);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "AddDoctorForm";
+            StartPosition = FormStartPosition.CenterParent;
+            Text = "Agregar / Editar Doctor";
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

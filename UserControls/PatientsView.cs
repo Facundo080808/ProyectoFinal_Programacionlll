@@ -1,7 +1,8 @@
-﻿using ProyectoFinal_Programacionlll.Helpers;
-using ProyectoFinal_Programacionlll.Models;
+﻿using ProyectoFinal_Programacionlll.DTOs;
+using ProyectoFinal_Programacionlll.Helpers;
 using ProyectoFinal_Programacionlll.Services;
 using System.Windows.Forms;
+using static ProyectoFinal_Programacionlll.Helpers.DataGridStyles;
 
 namespace ProyectoFinal_Programacionlll.UserControls
 {
@@ -14,13 +15,14 @@ namespace ProyectoFinal_Programacionlll.UserControls
             InitializeComponent();
             DataGridStyles.ApplyStyle(dataGridView1);
             LoadPatients();
+            ButtonsStyles.ApplyCreateStyle(btnAgregar);
         }
 
-        private async void LoadPatients()
+        public async void LoadPatients()
         {
             patients = await PatientService.GetAllAsync() ?? new();
             dataGridView1.DataSource = patients;
-
+           
             if (!dataGridView1.Columns.Contains("Editar"))
             {
                 DataGridViewButtonColumn editBtn = new()

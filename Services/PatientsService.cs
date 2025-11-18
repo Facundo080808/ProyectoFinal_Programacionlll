@@ -1,40 +1,113 @@
-﻿using ProyectoFinal_Programacionlll.Models;
-using System.Net.Http.Json;
+﻿using Newtonsoft.Json;
+using ProyectoFinal_Programacionlll.DTOs;
+using ProyectoFinal_Programacionlll.Helpers;
+using ProyectoFinal_Programacionlll.Models;
 
 namespace ProyectoFinal_Programacionlll.Services
 {
     public static class PatientService
     {
-        private static readonly HttpClient client = new HttpClient
-        {
-            BaseAddress = new Uri("http://localhost:5101/")
-        };
+        private static readonly string FilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "data", "patients.json");
 
-        public static async Task<List<PatientResponseDto>?> GetAllAsync()
+        // ============================
+        // Crear archivo si no existe
+        // ============================
+        static PatientService()
         {
-            var response = await client.GetAsync("api/Patient");
-            if (!response.IsSuccessStatusCode)
-                return null;
+            if (!Directory.Exists(Path.GetDirectoryName(FilePath)))
+                Directory.CreateDirectory(Path.GetDirectoryName(FilePath));
 
-            return await response.Content.ReadFromJsonAsync<List<PatientResponseDto>>();
+            if (!File.Exists(FilePath))
+                File.WriteAllText(FilePath, "[]");
         }
 
-        public static async Task<bool> CreateAsync(PatientCreateDto newPatient)
+        // ============================
+        // Helpers internos
+        // ============================
+        private static async Task<List<PatientResponseDto>> LoadFileAsync()
         {
-            var response = await client.PostAsJsonAsync("api/Patient", newPatient);
-            return response.IsSuccessStatusCode;
+            string json = await File.ReadAllTextAsync(FilePath);
+            return JsonConvert.DeserializeObject<List<PatientResponseDto>>(json) ?? new();
         }
 
-        public static async Task<bool> UpdateAsync(int id, PatientUpdateDto updated)
+        private static async Task SaveFileAsync(List<PatientResponseDto> list)
         {
-            var response = await client.PutAsJsonAsync($"api/Patient/{id}", updated);
-            return response.IsSuccessStatusCode;
+            string json = JsonConvert.SerializeObject(list, Formatting.Indented);
+            await File.WriteAllTextAsync(FilePath, json);
+        }
+
+        // ============================
+        // Métodos públicos
+        // ============================
+        public static async Task<List<PatientResponseDto>> GetAllAsync()
+        {
+            var patients = await LoadFileAsync();               
+            var appointments = AppointmentListed.Load();    
+
+            foreach (var p in patients)
+            {
+                p.AppointmentCount = appointments.Count(a => a.PatientId == p.Id);
+            }
+
+            return patients;
+        }
+
+        public static async Task<PatientResponseDto?> GetByIdAsync(int id)
+        {
+            var list = await LoadFileAsync();
+            return list.FirstOrDefault(x => x.Id == id);
+        }
+
+        public static async Task<bool> CreateAsync(PatientCreateDto dto)
+        {
+            var list = await LoadFileAsync();
+
+            int newId = list.Any() ? list.Max(x => x.Id) + 1 : 1;
+
+            var newPatient = new PatientResponseDto
+            {
+                Id = newId,
+                FullName = dto.FullName,
+                DNI = dto.DNI,
+                PhoneNumber = dto.PhoneNumber,
+                Address = dto.Address,
+                AppointmentCount = 0
+            };
+
+            list.Add(newPatient);
+            await SaveFileAsync(list);
+
+            return true;
+        }
+
+        public static async Task<bool> UpdateAsync(int id, PatientUpdateDto dto)
+        {
+            var list = await LoadFileAsync();
+            var patient = list.FirstOrDefault(x => x.Id == id);
+
+            if (patient == null)
+                return false;
+
+            if (dto.FullName != null) patient.FullName = dto.FullName;
+            if (dto.DNI != null) patient.DNI = dto.DNI;
+            if (dto.PhoneNumber != null) patient.PhoneNumber = dto.PhoneNumber;
+            if (dto.Address != null) patient.Address = dto.Address;
+
+            await SaveFileAsync(list);
+            return true;
         }
 
         public static async Task<bool> DeleteAsync(int id)
         {
-            var response = await client.DeleteAsync($"api/Patient/{id}");
-            return response.IsSuccessStatusCode;
+            var list = await LoadFileAsync();
+            var patient = list.FirstOrDefault(x => x.Id == id);
+
+            if (patient == null)
+                return false;
+
+            list.Remove(patient);
+            await SaveFileAsync(list);
+            return true;
         }
     }
 }

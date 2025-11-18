@@ -1,22 +1,28 @@
-using ProyectoFinal_Programacionlll.Models;
+using ProyectoFinal_Programacionlll.DTOs;
 using ProyectoFinal_Programacionlll.UserControls;
 using ProyectoFinal_Programacionlll.Utils;
 
 namespace ProyectoFinal_Programacionlll
 {
-
     public partial class Inicio : Form
     {
-        //private AppointmentsView appointmentsView;
         public Inicio()
         {
             InitializeComponent();
             ThemeManager.ApplyTheme(this);
 
             var user = UserSession.CurrentUser;
+            bool isAdmin = user.Role.ToLower() == "admin";
 
-            lblNombreUsuario.Text = user.FullName;
-            lblRolUsuario.Text = user.Role;
+            if (!isAdmin)
+            {
+                // Oculta todo el panel lateral
+                panelMenu.Visible = false;
+
+                // Ajusta el panelContent para ocupar toda la pantalla
+                panelContent.Dock = DockStyle.Fill;
+            }
+            LoadView(new UserControls.AppointmentsView());
         }
 
         private void LoadView(UserControl view)
@@ -24,8 +30,6 @@ namespace ProyectoFinal_Programacionlll
             panelContent.Controls.Clear();
             view.Dock = DockStyle.Fill;
             panelContent.Controls.Add(view);
-
-
         }
         private void BtnTurnos_Click(object sender, EventArgs e)
         {
@@ -46,7 +50,5 @@ namespace ProyectoFinal_Programacionlll
         {
             LoadView(new UserControls.UsersView());
         }
-
-
     }
 }

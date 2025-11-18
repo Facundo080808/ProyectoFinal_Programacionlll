@@ -1,4 +1,4 @@
-﻿using ProyectoFinal_Programacionlll.Models;
+﻿using ProyectoFinal_Programacionlll.DTOs;
 using ProyectoFinal_Programacionlll.Services;
 using ProyectoFinal_Programacionlll.Helpers;
 using System.Windows.Forms;
@@ -14,6 +14,7 @@ namespace ProyectoFinal_Programacionlll.UserControls
             InitializeComponent();
             DataGridStyles.ApplyStyle(dataGridView1);
             LoadUsers();
+            ButtonsStyles.ApplyCreateStyle(btnAgregar);
         }
 
         private async void LoadUsers()

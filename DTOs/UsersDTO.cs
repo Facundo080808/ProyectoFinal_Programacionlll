@@ -1,4 +1,4 @@
-﻿namespace ProyectoFinal_Programacionlll.Models
+﻿namespace ProyectoFinal_Programacionlll.DTOs
 {
     public class UserCreateDto
     {
@@ -33,8 +33,8 @@
     public class LoginResponse
     {
         public int Id { get; set; }
-        public string FullName { get; set; }
-        public string Email { get; set; }
+        required public string FullName { get; set; }
+        required public string Email { get; set; }
         public string Role { get; set; }
     }
 

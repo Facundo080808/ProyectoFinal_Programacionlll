@@ -24,177 +24,182 @@
 
         private void InitializeComponent()
         {
-            this.lblTitulo = new System.Windows.Forms.Label();
-            this.lblFecha = new System.Windows.Forms.Label();
-            this.dtpFecha = new System.Windows.Forms.DateTimePicker();
-            this.lblMotivo = new System.Windows.Forms.Label();
-            this.txtMotivo = new System.Windows.Forms.TextBox();
-            this.lblPrecio = new System.Windows.Forms.Label();
-            this.txtPrecio = new System.Windows.Forms.TextBox();
-            this.lblPacienteId = new System.Windows.Forms.Label();
-            this.txtPacienteId = new System.Windows.Forms.TextBox();
-            this.lblDoctorId = new System.Windows.Forms.Label();
-            this.txtDoctorId = new System.Windows.Forms.TextBox();
-            this.btnGuardar = new System.Windows.Forms.Button();
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.SuspendLayout();
+            lblTitulo = new Label();
+            lblFecha = new Label();
+            dtpFecha = new DateTimePicker();
+            lblMotivo = new Label();
+            txtMotivo = new TextBox();
+            lblPrecio = new Label();
+            txtPrecio = new TextBox();
+            btnGuardar = new Button();
+            btnCancelar = new Button();
+            cmbDoctor = new ComboBox();
+            cmbPaciente = new ComboBox();
+            lblPaciente = new Label();
+            lblDoctor = new Label();
+            SuspendLayout();
             // 
             // lblTitulo
             // 
-            this.lblTitulo.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
-            this.lblTitulo.ForeColor = System.Drawing.Color.FromArgb(30, 30, 30);
-            this.lblTitulo.Location = new System.Drawing.Point(40, 20);
-            this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(400, 40);
-            this.lblTitulo.TabIndex = 0;
-            this.lblTitulo.Text = "Editar Ficha Médica";
-            this.lblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            lblTitulo.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            lblTitulo.ForeColor = Color.FromArgb(30, 30, 30);
+            lblTitulo.Location = new Point(40, 20);
+            lblTitulo.Name = "lblTitulo";
+            lblTitulo.Size = new Size(400, 40);
+            lblTitulo.TabIndex = 0;
+            lblTitulo.Text = "Editar Ficha Médica";
+            lblTitulo.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblFecha
             // 
-            this.lblFecha.AutoSize = true;
-            this.lblFecha.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.lblFecha.Location = new System.Drawing.Point(40, 90);
-            this.lblFecha.Name = "lblFecha";
-            this.lblFecha.Size = new System.Drawing.Size(49, 19);
-            this.lblFecha.TabIndex = 1;
-            this.lblFecha.Text = "Fecha:";
+            lblFecha.AutoSize = true;
+            lblFecha.Font = new Font("Segoe UI", 10F);
+            lblFecha.Location = new Point(40, 90);
+            lblFecha.Name = "lblFecha";
+            lblFecha.Size = new Size(47, 19);
+            lblFecha.TabIndex = 1;
+            lblFecha.Text = "Fecha:";
             // 
             // dtpFecha
             // 
-            this.dtpFecha.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.dtpFecha.Location = new System.Drawing.Point(150, 85);
-            this.dtpFecha.Name = "dtpFecha";
-            this.dtpFecha.Size = new System.Drawing.Size(250, 25);
-            this.dtpFecha.TabIndex = 2;
+            dtpFecha.Font = new Font("Segoe UI", 10F);
+            dtpFecha.Location = new Point(150, 85);
+            dtpFecha.Name = "dtpFecha";
+            dtpFecha.Size = new Size(250, 25);
+            dtpFecha.TabIndex = 2;
             // 
             // lblMotivo
             // 
-            this.lblMotivo.AutoSize = true;
-            this.lblMotivo.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.lblMotivo.Location = new System.Drawing.Point(40, 135);
-            this.lblMotivo.Name = "lblMotivo";
-            this.lblMotivo.Size = new System.Drawing.Size(57, 19);
-            this.lblMotivo.TabIndex = 3;
-            this.lblMotivo.Text = "Motivo:";
+            lblMotivo.AutoSize = true;
+            lblMotivo.Font = new Font("Segoe UI", 10F);
+            lblMotivo.Location = new Point(40, 135);
+            lblMotivo.Name = "lblMotivo";
+            lblMotivo.Size = new Size(56, 19);
+            lblMotivo.TabIndex = 3;
+            lblMotivo.Text = "Motivo:";
             // 
             // txtMotivo
             // 
-            this.txtMotivo.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtMotivo.Location = new System.Drawing.Point(150, 130);
-            this.txtMotivo.Name = "txtMotivo";
-            this.txtMotivo.Size = new System.Drawing.Size(250, 25);
-            this.txtMotivo.TabIndex = 4;
+            txtMotivo.Font = new Font("Segoe UI", 10F);
+            txtMotivo.Location = new Point(150, 130);
+            txtMotivo.Name = "txtMotivo";
+            txtMotivo.Size = new Size(250, 25);
+            txtMotivo.TabIndex = 4;
             // 
             // lblPrecio
             // 
-            this.lblPrecio.AutoSize = true;
-            this.lblPrecio.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.lblPrecio.Location = new System.Drawing.Point(40, 180);
-            this.lblPrecio.Name = "lblPrecio";
-            this.lblPrecio.Size = new System.Drawing.Size(52, 19);
-            this.lblPrecio.TabIndex = 5;
-            this.lblPrecio.Text = "Precio:";
+            lblPrecio.AutoSize = true;
+            lblPrecio.Font = new Font("Segoe UI", 10F);
+            lblPrecio.Location = new Point(40, 180);
+            lblPrecio.Name = "lblPrecio";
+            lblPrecio.Size = new Size(49, 19);
+            lblPrecio.TabIndex = 5;
+            lblPrecio.Text = "Precio:";
             // 
             // txtPrecio
             // 
-            this.txtPrecio.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtPrecio.Location = new System.Drawing.Point(150, 175);
-            this.txtPrecio.Name = "txtPrecio";
-            this.txtPrecio.Size = new System.Drawing.Size(250, 25);
-            this.txtPrecio.TabIndex = 6;
-            // 
-            // lblPacienteId
-            // 
-            this.lblPacienteId.AutoSize = true;
-            this.lblPacienteId.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.lblPacienteId.Location = new System.Drawing.Point(40, 225);
-            this.lblPacienteId.Name = "lblPacienteId";
-            this.lblPacienteId.Size = new System.Drawing.Size(85, 19);
-            this.lblPacienteId.TabIndex = 7;
-            this.lblPacienteId.Text = "ID Paciente:";
-            // 
-            // txtPacienteId
-            // 
-            this.txtPacienteId.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtPacienteId.Location = new System.Drawing.Point(150, 220);
-            this.txtPacienteId.Name = "txtPacienteId";
-            this.txtPacienteId.Size = new System.Drawing.Size(250, 25);
-            this.txtPacienteId.TabIndex = 8;
-            // 
-            // lblDoctorId
-            // 
-            this.lblDoctorId.AutoSize = true;
-            this.lblDoctorId.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.lblDoctorId.Location = new System.Drawing.Point(40, 270);
-            this.lblDoctorId.Name = "lblDoctorId";
-            this.lblDoctorId.Size = new System.Drawing.Size(76, 19);
-            this.lblDoctorId.TabIndex = 9;
-            this.lblDoctorId.Text = "ID Doctor:";
-            // 
-            // txtDoctorId
-            // 
-            this.txtDoctorId.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtDoctorId.Location = new System.Drawing.Point(150, 265);
-            this.txtDoctorId.Name = "txtDoctorId";
-            this.txtDoctorId.Size = new System.Drawing.Size(250, 25);
-            this.txtDoctorId.TabIndex = 10;
+            txtPrecio.Font = new Font("Segoe UI", 10F);
+            txtPrecio.Location = new Point(150, 175);
+            txtPrecio.Name = "txtPrecio";
+            txtPrecio.Size = new Size(250, 25);
+            txtPrecio.TabIndex = 6;
+            txtPrecio.KeyPress += txtPrecio_KeyPress;
             // 
             // btnGuardar
             // 
-            this.btnGuardar.BackColor = System.Drawing.Color.FromArgb(0, 120, 215);
-            this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGuardar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnGuardar.ForeColor = System.Drawing.Color.White;
-            this.btnGuardar.Location = new System.Drawing.Point(150, 320);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(110, 35);
-            this.btnGuardar.TabIndex = 11;
-            this.btnGuardar.Text = "Guardar";
-            this.btnGuardar.UseVisualStyleBackColor = false;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            btnGuardar.BackColor = Color.FromArgb(0, 120, 215);
+            btnGuardar.FlatStyle = FlatStyle.Flat;
+            btnGuardar.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnGuardar.ForeColor = Color.White;
+            btnGuardar.Location = new Point(150, 320);
+            btnGuardar.Name = "btnGuardar";
+            btnGuardar.Size = new Size(110, 35);
+            btnGuardar.TabIndex = 11;
+            btnGuardar.Text = "Guardar";
+            btnGuardar.UseVisualStyleBackColor = false;
+            btnGuardar.Click += btnGuardar_Click;
             // 
             // btnCancelar
             // 
-            this.btnCancelar.BackColor = System.Drawing.Color.Gray;
-            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancelar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnCancelar.ForeColor = System.Drawing.Color.White;
-            this.btnCancelar.Location = new System.Drawing.Point(290, 320);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(110, 35);
-            this.btnCancelar.TabIndex = 12;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = false;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            btnCancelar.BackColor = Color.Gray;
+            btnCancelar.FlatStyle = FlatStyle.Flat;
+            btnCancelar.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnCancelar.ForeColor = Color.White;
+            btnCancelar.Location = new Point(290, 320);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new Size(110, 35);
+            btnCancelar.TabIndex = 12;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.UseVisualStyleBackColor = false;
+            btnCancelar.Click += btnCancelar_Click;
+            // 
+            // cmbDoctor
+            // 
+            cmbDoctor.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbDoctor.Location = new Point(150, 259);
+            cmbDoctor.Name = "cmbDoctor";
+            cmbDoctor.Size = new Size(200, 23);
+            cmbDoctor.TabIndex = 13;
+            //cmbDoctor.SelectedIndexChanged += this.cmbDoctor_SelectedIndexChanged;
+            // 
+            // cmbPaciente
+            // 
+            cmbPaciente.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbPaciente.Location = new Point(150, 219);
+            cmbPaciente.Name = "cmbPaciente";
+            cmbPaciente.Size = new Size(200, 23);
+            cmbPaciente.TabIndex = 14;
+            //cmbPaciente.SelectedIndexChanged += this.cmbPaciente_SelectedIndexChanged;
+            // 
+            // lblPaciente
+            // 
+            lblPaciente.AutoSize = true;
+            lblPaciente.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblPaciente.Location = new Point(40, 219);
+            lblPaciente.Name = "lblPaciente";
+            lblPaciente.Size = new Size(74, 19);
+            lblPaciente.TabIndex = 15;
+            lblPaciente.Text = "Paciente :";
+            lblPaciente.Click += this.lblPaciente_Click;
+            // 
+            // lblDoctor
+            // 
+            lblDoctor.AutoSize = true;
+            lblDoctor.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            lblDoctor.Location = new Point(40, 259);
+            lblDoctor.Name = "lblDoctor";
+            lblDoctor.Size = new Size(63, 19);
+            lblDoctor.TabIndex = 16;
+            lblDoctor.Text = "Doctor :";
+            lblDoctor.Click += lblDoctor_Click;
             // 
             // EditAppointmentForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(460, 390);
-            this.Controls.Add(this.btnCancelar);
-            this.Controls.Add(this.btnGuardar);
-            this.Controls.Add(this.txtDoctorId);
-            this.Controls.Add(this.lblDoctorId);
-            this.Controls.Add(this.txtPacienteId);
-            this.Controls.Add(this.lblPacienteId);
-            this.Controls.Add(this.txtPrecio);
-            this.Controls.Add(this.lblPrecio);
-            this.Controls.Add(this.txtMotivo);
-            this.Controls.Add(this.lblMotivo);
-            this.Controls.Add(this.dtpFecha);
-            this.Controls.Add(this.lblFecha);
-            this.Controls.Add(this.lblTitulo);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "EditAppointmentForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Editar Ficha Médica";
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.WhiteSmoke;
+            ClientSize = new Size(460, 390);
+            Controls.Add(cmbDoctor);
+            Controls.Add(cmbPaciente);
+            Controls.Add(lblPaciente);
+            Controls.Add(lblDoctor);
+            Controls.Add(btnCancelar);
+            Controls.Add(btnGuardar);
+            Controls.Add(txtPrecio);
+            Controls.Add(lblPrecio);
+            Controls.Add(txtMotivo);
+            Controls.Add(lblMotivo);
+            Controls.Add(dtpFecha);
+            Controls.Add(lblFecha);
+            Controls.Add(lblTitulo);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "EditAppointmentForm";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Editar Ficha Médica";
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -206,11 +211,11 @@
         private System.Windows.Forms.TextBox txtMotivo;
         private System.Windows.Forms.Label lblPrecio;
         private System.Windows.Forms.TextBox txtPrecio;
-        private System.Windows.Forms.Label lblPacienteId;
-        private System.Windows.Forms.TextBox txtPacienteId;
-        private System.Windows.Forms.Label lblDoctorId;
-        private System.Windows.Forms.TextBox txtDoctorId;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Button btnCancelar;
+        private ComboBox cmbDoctor;
+        private ComboBox cmbPaciente;
+        private Label lblPaciente;
+        private Label lblDoctor;
     }
 }

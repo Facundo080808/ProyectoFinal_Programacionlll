@@ -1,4 +1,4 @@
-﻿using ProyectoFinal_Programacionlll.Models;
+﻿using ProyectoFinal_Programacionlll.DTOs;
 using ProyectoFinal_Programacionlll.Services;
 using System.Threading.Tasks;
 

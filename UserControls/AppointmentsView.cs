@@ -1,9 +1,10 @@
-﻿using ProyectoFinal_Programacionlll.Helpers;
-using ProyectoFinal_Programacionlll.Forms;
+﻿using ProyectoFinal_Programacionlll.Forms;
+using ProyectoFinal_Programacionlll.Helpers;
 using ProyectoFinal_Programacionlll.Services;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using static ProyectoFinal_Programacionlll.Helpers.DataGridStyles;
 
 namespace ProyectoFinal_Programacionlll.UserControls
 {
@@ -24,6 +25,9 @@ namespace ProyectoFinal_Programacionlll.UserControls
 
             LoadAppointments();
         }
+
+       
+
 
         private async void LoadAppointments()
         {
